@@ -154,7 +154,7 @@ public function getLeaderPosts()
 		 else{
 			  $this->load->database();
 			  $this->load->model('LeaderModel');
-			  $this->LeaderModel->insertPushLeaderUpdates();
+			  $this->LeaderModel->fetchLeaderPosts();
 		 }
 		
 	}
