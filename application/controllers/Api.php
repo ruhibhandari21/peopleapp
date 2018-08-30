@@ -116,6 +116,62 @@ Class Api extends CI_Controller
 		 }
 		
 	}
+
+
+
+
+
+    //Push Updates 
+	public function uploadLeaderPosts()
+	{
+		 if (!isset($_POST['UserId']) || !isset($_POST['Title'])
+			 ||!isset($_POST['Description']) || !isset($_POST['Attachment'])
+			 ||!isset($_POST['Role'])) {
+			  $res = array(
+                'success' => 'false',
+                'message' => 'Please make sure you are passing credentials in post format'
+            );
+            echo json_encode($res);
+		 }
+		 else{
+			  $this->load->database();
+			  $this->load->model('LeaderModel');
+			  $this->LeaderModel->insertPushLeaderUpdates();
+		 }
+		
+	}
+
+
+public function getLeaderPosts()
+	{
+		 if (!isset($_POST['UserId'])||!isset($_POST['Role'])) {
+			  $res = array(
+                'success' => 'false',
+                'message' => 'Please make sure you are passing credentials in post format'
+            );
+            echo json_encode($res);
+		 }
+		 else{
+			  $this->load->database();
+			  $this->load->model('LeaderModel');
+			  $this->LeaderModel->insertPushLeaderUpdates();
+		 }
+		
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     
 	
 	

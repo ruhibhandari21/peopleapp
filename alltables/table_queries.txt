@@ -1,39 +1,51 @@
-Studentattendance
+    Studentattendance
 
 
-1)Create Otp generation table based on mobile no.
-CREATE TABLE otp_generation(
-	UserId INT NOT NULL AUTO_INCREMENT,
+    1)Create Otp generation table based on mobile no.
+    CREATE TABLE otp_generation(
+    UserId INT NOT NULL AUTO_INCREMENT,
     MobileNo VARCHAR(255) UNIQUE,
-	Role VARCHAR(255),
-	Otp INT,
-	OtpStartTime datetime,
-	OtpEndTime datetime,
-	isloggedIn BOOLEAN,
-	PRIMARY KEY (UserId)
-);
+    Role VARCHAR(255),
+    Otp INT,
+    OtpStartTime datetime,
+    OtpEndTime datetime,
+    isloggedIn BOOLEAN,
+    PRIMARY KEY (UserId)
+    );
 
 
-2)Profile table creation
-CREATE TABLE userDetails(
-	UserId INT,
+    2)Profile table creation
+    CREATE TABLE userDetails(
+    UserId INT,
     MobileNo VARCHAR(255) UNIQUE,
-	Role VARCHAR(255),
-	Firstname VARCHAR(255),
-	Lastname VARCHAR(255),
-	State VARCHAR(255),
-	District VARCHAR(255),
-	Taluka VARCHAR(255),
-	City VARCHAR(255),
-	PostalCode VARCHAR(255),
-	Language VARCHAR(255)
-);
+    Role VARCHAR(255),
+    Firstname VARCHAR(255),
+    Lastname VARCHAR(255),
+    State VARCHAR(255),
+    District VARCHAR(255),
+    Taluka VARCHAR(255),
+    City VARCHAR(255),
+    PostalCode VARCHAR(255),
+    Language VARCHAR(255)
+    );
+
+
+    2)Leader Posts table creation
+    CREATE TABLE leader_post(
+    PostId INT NOT NULL AUTO_INCREMENT,
+    UserId INT,
+    Title VARCHAR(255),
+    Description VARCHAR(255),
+    Attachment VARCHAR(255),
+    Rating BOOLEAN,
+    PRIMARY KEY (PostId)
+    );
 
 
 
--------------------------------------------
-2)Insert in adminlogindetails
-INSERT INTO `adminlogindetails`(
+    -------------------------------------------
+    2)Insert in adminlogindetails
+    INSERT INTO `adminlogindetails`(
     `EmployeeID`,
     `LastName`,
     `FirstName`,
@@ -41,10 +53,10 @@ INSERT INTO `adminlogindetails`(
     `City`,
     `Username`,
     `UserPassword`,
-	`IsLoggedIn`,
-	`Role`
-)
-VALUES(
+    `IsLoggedIn`,
+    `Role`
+    )
+    VALUES(
     '1000',
     'Bhandari',
     'Ruhi',
@@ -52,127 +64,127 @@ VALUES(
     'Pune',
     'ruhi_bhandari',
     'admin1234',
-	'0',
-	'admin'
-)
--------------------------------------------
-3)Create table for adding classes
-CREATE TABLE AddClass(
+    '0',
+    'admin'
+    )
+    -------------------------------------------
+    3)Create table for adding classes
+    CREATE TABLE AddClass(
     ClassName VARCHAR(255),
     ClassAbbrevation VARCHAR(255)
-);
+    );
 
-3)Create table for adding classes
-CREATE TABLE addImage(
+    3)Create table for adding classes
+    CREATE TABLE addImage(
     ImageName VARCHAR(255)
-    
-);
--------------------------------------------
-3)Create table for adding subjects
-CREATE TABLE AddSubject(
-Classname VARCHAR(255),
+
+    );
+    -------------------------------------------
+    3)Create table for adding subjects
+    CREATE TABLE AddSubject(
+    Classname VARCHAR(255),
     SubjectName VARCHAR(255),
     SubjectAbbrevation VARCHAR(255)
-);
--------------------------------------------
-3)Create table for adding Teachers
-CREATE TABLE AddTeacher(
-UserId INT NOT NULL AUTO_INCREMENT,
+    );
+    -------------------------------------------
+    3)Create table for adding Teachers
+    CREATE TABLE AddTeacher(
+    UserId INT NOT NULL AUTO_INCREMENT,
     Fullname VARCHAR(255),
     EmailId VARCHAR(255),
-	MobileNo INT(12),
-	Classname VARCHAR(255),
-	Username VARCHAR(255),
-	Password VARCHAR(255),
-	PRIMARY KEY (UserId)
-);
--------------------------------------------
-3)Create table for adding Teachers
-CREATE TABLE AddStudent(
-UserId INT NOT NULL AUTO_INCREMENT,
-AdmissionNo VARCHAR(255),
-Classname VARCHAR(255),
-Gender VARCHAR(20),
-DateOfReg VARCHAR(100),
-FeeEffectiveFrom VARCHAR(100),
-    StudentFullname VARCHAR(255),
-	FatherFullname VARCHAR(255),
-	MotherFullname VARCHAR(255),
-    EmailId VARCHAR(255),
-	MobileNo INT(12),
-	Username VARCHAR(255),
-	Password VARCHAR(255),
-	Present INT,
-	Absent INT,
+    MobileNo INT(12),
+    Classname VARCHAR(255),
+    Username VARCHAR(255),
+    Password VARCHAR(255),
     PRIMARY KEY (UserId)
-);
-------------------------------------------------------
-4)Create table for adding Attendance entry of students
-CREATE TABLE StudentAttendanceEntry(
-CurrentDate VARCHAR(255),
-UserId VARCHAR(255),
-Classname VARCHAR(255),
-Present INT,
-Absent INT,
-);
--------------------------------------------------------
+    );
+    -------------------------------------------
+    3)Create table for adding Teachers
+    CREATE TABLE AddStudent(
+    UserId INT NOT NULL AUTO_INCREMENT,
+    AdmissionNo VARCHAR(255),
+    Classname VARCHAR(255),
+    Gender VARCHAR(20),
+    DateOfReg VARCHAR(100),
+    FeeEffectiveFrom VARCHAR(100),
+    StudentFullname VARCHAR(255),
+    FatherFullname VARCHAR(255),
+    MotherFullname VARCHAR(255),
+    EmailId VARCHAR(255),
+    MobileNo INT(12),
+    Username VARCHAR(255),
+    Password VARCHAR(255),
+    Present INT,
+    Absent INT,
+    PRIMARY KEY (UserId)
+    );
+    ------------------------------------------------------
+    4)Create table for adding Attendance entry of students
+    CREATE TABLE StudentAttendanceEntry(
+    CurrentDate VARCHAR(255),
+    UserId VARCHAR(255),
+    Classname VARCHAR(255),
+    Present INT,
+    Absent INT,
+    );
+    -------------------------------------------------------
 
-INSERT INTO `StudentAttendanceEntry`(
+    INSERT INTO `StudentAttendanceEntry`(
     `CurrentDate`,
     `UserId`,
     `Classname`,
     `Present`,
     `Absent`
-)
-VALUES(
+    )
+    VALUES(
     '16-Feb-2018',
     '1',
     'Comp eng',
     '1',
     '0'
-)
+    )
 
----------------------------------------------------------
-CREATE TABLE addExam(
-Classname VARCHAR(255),
-Subject VARCHAR(255),
-ExamType VARCHAR(255),
-ExamDate VARCHAR(255),
-MaxMarks VARCHAR(255),
-MinMarks VARCHAR(255)
-);
---------------------------------
-INSERT INTO `addsubject`(
+    ---------------------------------------------------------
+    CREATE TABLE addExam(
+    Classname VARCHAR(255),
+    Subject VARCHAR(255),
+    ExamType VARCHAR(255),
+    ExamDate VARCHAR(255),
+    MaxMarks VARCHAR(255),
+    MinMarks VARCHAR(255)
+    );
+    --------------------------------
+    INSERT INTO `addsubject`(
     `SubjectName`,
     `SubjectAbbrevation`
-    
-)
-VALUES(
+
+    )
+    VALUES(
     'Computer Science',
     'Comp Sc'
-    
-)
-_______________________________
 
-CREATE TABLE addMarks(
-TeacherUserId VARCHAR(255),
-StudentUserId VARCHAR(255),
-StudentName VARCHAR(255),
-Classname VARCHAR(255),
-SubjectName VARCHAR(255),
-ExamType VARCHAR(255),
-ExamDate VARCHAR(255),
-MaxMarks VARCHAR(255),
-MinMarks VARCHAR(255),
-MarksObtained VARCHAR(255)
-);
----------------------------------
-CREATE TABLE addHomework(
-TeacherUserId VARCHAR(255),
-Classname VARCHAR(255),
-SubjectName VARCHAR(255),
-Description VARCHAR(255)
-);
+    )
+    _______________________________
+
+    CREATE TABLE addMarks(
+    TeacherUserId VARCHAR(255),
+    StudentUserId VARCHAR(255),
+    StudentName VARCHAR(255),
+    Classname VARCHAR(255),
+    SubjectName VARCHAR(255),
+    ExamType VARCHAR(255),
+    ExamDate VARCHAR(255),
+    MaxMarks VARCHAR(255),
+    MinMarks VARCHAR(255),
+    MarksObtained VARCHAR(255)
+    );
+    ---------------------------------
+    CREATE TABLE addHomework(
+    TeacherUserId VARCHAR(255),
+    Classname VARCHAR(255),
+    SubjectName VARCHAR(255),
+    Description VARCHAR(255)
+    );
 
 
 
